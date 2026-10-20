@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: duett-karaoke
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: SPOTIFY_CLIENT_ID
+        sync: false
