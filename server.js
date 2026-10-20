@@ -1,6 +1,6 @@
 'use strict';
 /*
- * Duett-Karaoke Server
+ * Duett-Karaoke Server (v2: Mac-Bildschirm + Handy-Mikros)
  * - liefert die Web-App aus (public/)
  * - Räume + Synchronisation der Handys per WebSocket (/ws)
  * - Lyrics-Proxy zu LRCLIB (/api/lyrics)
@@ -152,8 +152,11 @@ const server = http.createServer(async (req, res) => {
   sendFile(res, file);
 });
 
+
 /* ------------------------------------------------------------------ */
 /* Räume                                                               */
+/*   display = der Mac (steuert, spielt Musik, zeigt alles)            */
+/*   devices = Handys (Mikro, Name); Zuordnung (Rolle) macht der Mac   */
 /* ------------------------------------------------------------------ */
 const rooms = new Map(); // code -> room
 
@@ -166,57 +169,46 @@ function makeCode() {
   }
   return null;
 }
-
+const newId = () => crypto.randomBytes(6).toString('hex');
 const cleanName = s => String(s || '').replace(/[\u0000-\u001f<>]/g, '').trim().slice(0, 20);
 const cleanRole = r => (r === 'm' || r === 'f' ? r : '');
 const num = (v, min, max, def = 0) => (typeof v === 'number' && isFinite(v) ? Math.min(max, Math.max(min, v)) : def);
 
-function send(ws, obj) {
-  if (ws && ws.readyState === 1) ws.send(JSON.stringify(obj));
-}
-function broadcast(room, obj, exceptId) {
+function send(ws, obj) { if (ws && ws.readyState === 1) ws.send(JSON.stringify(obj)); }
+function toDevices(room, obj) {
   const msg = JSON.stringify(obj);
-  for (const p of room.players.values()) {
-    if (p.id !== exceptId && p.ws && p.ws.readyState === 1) p.ws.send(msg);
-  }
+  for (const d of room.devices.values()) if (d.ws && d.ws.readyState === 1) d.ws.send(msg);
 }
+function toAll(room, obj) { toDevices(room, obj); send(room.display.ws, obj); }
+
 function pub(room) {
-  return [...room.players.values()].map(p => ({
-    id: p.id, name: p.name, role: p.role, host: p.id === room.hostId,
-    online: p.online, round: p.round, total: p.total
+  return [...room.devices.values()].map(d => ({
+    id: d.id, name: d.name, role: d.role, online: d.online, mic: d.mic, round: d.round, total: d.total
   }));
 }
-function snapshot(room) {
-  return {
-    code: room.code, phase: room.phase, hostId: room.hostId, players: pub(room),
+function snapshot(room, forDisplay) {
+  const s = {
+    code: room.code, phase: room.phase, players: pub(room),
     track: room.track, lines: room.lines, offset: room.offset, pos: room.pos
   };
+  if (forDisplay) s.notes = room.notes;
+  return s;
 }
-function broadcastPlayers(room) {
-  broadcast(room, { type: 'players', players: pub(room) });
-}
-function addPlayer(room, ws, name, role) {
-  const p = {
-    id: crypto.randomBytes(6).toString('hex'), name, role, ws,
-    online: true, round: 0, total: 0, lastSeen: Date.now()
-  };
-  room.players.set(p.id, p);
-  ws.ctx = { room, player: p };
-  return p;
-}
-function resetRound(room) {
-  for (const p of room.players.values()) p.round = 0;
-}
+const broadcastPlayers = room => toAll(room, { type: 'players', players: pub(room) });
+
+function resetRound(room) { for (const d of room.devices.values()) d.round = 0; }
 function closeRoom(room, notify = true) {
-  if (notify) broadcast(room, { type: 'closed' });
-  for (const p of room.players.values()) { if (p.ws) p.ws.ctx = null; }
+  if (notify) toDevices(room, { type: 'closed' });
+  for (const d of room.devices.values()) if (d.ws) d.ws.ctx = null;
+  if (room.display.ws) room.display.ws.ctx = null;
   rooms.delete(room.code);
 }
 function detach(ws) {
   const c = ws.ctx;
   if (!c) return;
   ws.ctx = null;
-  if (c.player.ws === ws) { c.player.online = false; c.player.lastSeen = Date.now(); }
+  const who = c.kind === 'display' ? c.room.display : c.device;
+  if (who.ws === ws) { who.online = false; who.lastSeen = Date.now(); }
   if (rooms.has(c.room.code)) broadcastPlayers(c.room);
 }
 
@@ -234,11 +226,24 @@ function cleanTrack(t) {
 function cleanLines(lines) {
   if (!Array.isArray(lines)) return null;
   const out = [];
-  for (const l of lines.slice(0, 400)) {
+  for (const l of lines.slice(0, 500)) {
     if (!l || typeof l.text !== 'string' || typeof l.t !== 'number' || !isFinite(l.t)) continue;
     out.push({ t: Math.max(0, l.t), text: l.text.slice(0, 200), role: ['m', 'f', 'b'].includes(l.role) ? l.role : 'b' });
   }
   return out.length ? out : null;
+}
+// Noten: [[start, ende, ton, golden, teil], ...]
+function cleanNotes(n) {
+  if (!n || typeof n !== 'object' || !Array.isArray(n.data)) return null;
+  const data = [];
+  for (const r of n.data.slice(0, 6000)) {
+    if (!Array.isArray(r) || r.length < 3) continue;
+    const [s, e, p, g, part] = r;
+    if ([s, e, p].some(v => typeof v !== 'number' || !isFinite(v))) continue;
+    data.push([s, e, p, g ? 1 : 0, part === 2 ? 2 : 1]);
+  }
+  if (!data.length) return null;
+  return { data, off: num(n.off, -60, 60, 0), name: String(n.name || '').slice(0, 120), fine: num(n.fine, -5, 5, 0) };
 }
 
 /* ------------------------------------------------------------------ */
@@ -254,7 +259,7 @@ wss.on('connection', ws => {
   ws.on('message', raw => {
     const now = Date.now();
     if (now - ws.rl.t > 5000) ws.rl = { t: now, n: 0 };
-    if (++ws.rl.n > 150) return ws.terminate();
+    if (++ws.rl.n > 400) return ws.terminate();
     let m;
     try { m = JSON.parse(raw); } catch { return; }
     if (!m || typeof m.type !== 'string') return;
@@ -267,83 +272,104 @@ wss.on('connection', ws => {
 function onMessage(ws, m) {
   if (m.type === 'ping') return send(ws, { type: 'pong', t0: m.t0, ts: Date.now() });
 
+  /* ---------- Raum erstellen (Mac) ---------- */
   if (m.type === 'create') {
     if (ws.ctx) detach(ws);
     if (rooms.size >= MAX_ROOMS) return send(ws, { type: 'error', msg: 'Server voll, bitte später nochmal.', fatal: true });
     const code = makeCode();
     if (!code) return send(ws, { type: 'error', msg: 'Konnte keinen Raum anlegen.', fatal: true });
     const room = {
-      code, hostId: null, players: new Map(), phase: 'lobby',
-      track: null, lines: null, offset: 0, pos: null, dirty: false, finishing: false
+      code, display: { id: newId(), ws, online: true, lastSeen: Date.now() }, devices: new Map(),
+      phase: 'lobby', track: null, lines: null, notes: null, offset: 0, pos: null, dirty: false
     };
-    const p = addPlayer(room, ws, cleanName(m.name) || 'Host', cleanRole(m.role));
-    room.hostId = p.id;
+    ws.ctx = { room, kind: 'display' };
     rooms.set(code, room);
-    return send(ws, { type: 'created', code, id: p.id, snap: snapshot(room) });
+    return send(ws, { type: 'created', code, id: room.display.id, kind: 'display', snap: snapshot(room, true) });
   }
 
+  /* ---------- Handy tritt bei ---------- */
   if (m.type === 'join') {
     const room = rooms.get(String(m.code || '').toUpperCase().trim());
-    if (!room) return send(ws, { type: 'error', msg: 'Raum nicht gefunden. Code prüfen.' });
-    if (room.players.size >= MAX_PLAYERS) return send(ws, { type: 'error', msg: 'Raum ist voll.' });
+    if (!room) return send(ws, { type: 'error', msg: 'Raum nicht gefunden. Code prüfen.', fatal: true });
+    if (room.devices.size >= MAX_PLAYERS) return send(ws, { type: 'error', msg: 'Raum ist voll.', fatal: true });
     const name = cleanName(m.name);
     if (!name) return send(ws, { type: 'error', msg: 'Bitte Namen eingeben.' });
     if (ws.ctx) detach(ws);
-    const p = addPlayer(room, ws, name, cleanRole(m.role) || 'm');
-    send(ws, { type: 'joined', code: room.code, id: p.id, snap: snapshot(room) });
+    const device = { id: newId(), name, role: '', ws, online: true, mic: false, round: 0, total: 0, lastSeen: Date.now() };
+    room.devices.set(device.id, device);
+    ws.ctx = { room, kind: 'device', device };
+    send(ws, { type: 'joined', code: room.code, id: device.id, kind: 'device', snap: snapshot(room, false) });
     return broadcastPlayers(room);
   }
 
+  /* ---------- Wiederverbinden ---------- */
   if (m.type === 'rejoin') {
     const room = rooms.get(String(m.code || '').toUpperCase());
-    const p = room && room.players.get(String(m.id || ''));
-    if (!p) return send(ws, { type: 'error', msg: 'Raum nicht mehr vorhanden.', fatal: true });
-    if (p.ws && p.ws !== ws) { p.ws.ctx = null; try { p.ws.close(); } catch {} }
-    p.ws = ws; p.online = true; p.lastSeen = Date.now();
-    ws.ctx = { room, player: p };
-    send(ws, { type: 'joined', code: room.code, id: p.id, snap: snapshot(room) });
+    const id = String(m.id || '');
+    if (!room) return send(ws, { type: 'error', msg: 'Raum nicht mehr vorhanden.', fatal: true });
+    if (room.display.id === id) {
+      const d = room.display;
+      if (d.ws && d.ws !== ws) { d.ws.ctx = null; try { d.ws.close(); } catch {} }
+      d.ws = ws; d.online = true; d.lastSeen = Date.now();
+      ws.ctx = { room, kind: 'display' };
+      send(ws, { type: 'joined', code: room.code, id, kind: 'display', snap: snapshot(room, true) });
+      return broadcastPlayers(room);
+    }
+    const dev = room.devices.get(id);
+    if (!dev) return send(ws, { type: 'error', msg: 'Du wurdest aus dem Raum entfernt.', fatal: true });
+    if (dev.ws && dev.ws !== ws) { dev.ws.ctx = null; try { dev.ws.close(); } catch {} }
+    dev.ws = ws; dev.online = true; dev.lastSeen = Date.now();
+    ws.ctx = { room, kind: 'device', device: dev };
+    send(ws, { type: 'joined', code: room.code, id, kind: 'device', snap: snapshot(room, false) });
     return broadcastPlayers(room);
   }
 
   const c = ws.ctx;
   if (!c) return;
-  const { room, player } = c;
-  const isHost = player.id === room.hostId;
+  const { room } = c;
 
-  switch (m.type) {
-    case 'profile': {
-      const n = cleanName(m.name);
-      if (n) player.name = n;
-      if ('role' in m) player.role = cleanRole(m.role);
-      return broadcastPlayers(room);
+  /* ---------- Nachrichten vom Handy ---------- */
+  if (c.kind === 'device') {
+    const dev = c.device;
+    switch (m.type) {
+      case 'profile': {
+        const n = cleanName(m.name);
+        if (n) dev.name = n;
+        if (typeof m.mic === 'boolean') dev.mic = m.mic;
+        return broadcastPlayers(room);
+      }
+      case 'pitch': {
+        // [[serverZeit, midi|null, pegel], ...] -> nur an den Mac weiterleiten
+        if (!Array.isArray(m.s) || !room.display.online) return;
+        const s = [];
+        for (const r of m.s.slice(0, 30)) {
+          if (!Array.isArray(r) || typeof r[0] !== 'number') continue;
+          s.push([r[0], typeof r[1] === 'number' && isFinite(r[1]) ? Math.round(r[1] * 100) / 100 : null, num(r[2], 0, 1, 0)]);
+        }
+        if (s.length) send(room.display.ws, { type: 'pitch', id: dev.id, s });
+        return;
+      }
+      case 'leave': {
+        room.devices.delete(dev.id);
+        ws.ctx = null;
+        return broadcastPlayers(room);
+      }
     }
-    case 'score': {
-      player.round = Math.round(num(m.score, 0, 100000, player.round));
-      room.dirty = true;
-      return;
-    }
-    case 'leave': {
-      if (isHost) { closeRoom(room); return; }
-      room.players.delete(player.id);
-      ws.ctx = null;
-      return broadcastPlayers(room);
-    }
+    return;
   }
 
-  // ---- ab hier nur Host ----
-  if (!isHost) return;
-
+  /* ---------- Nachrichten vom Mac ---------- */
   switch (m.type) {
     case 'track': {
       const t = cleanTrack(m.track);
       if (!t || !t.id) return;
       room.track = t;
       room.lines = cleanLines(m.lines);
+      room.notes = cleanNotes(m.notes);
       room.phase = 'ready';
       room.pos = null;
-      room.finishing = false;
       resetRound(room);
-      broadcast(room, { type: 'track', track: room.track, lines: room.lines });
+      toDevices(room, { type: 'track', track: room.track, lines: room.lines });
       return broadcastPlayers(room);
     }
     case 'roles': {
@@ -352,15 +378,35 @@ function onMessage(ws, m) {
         const r = m.roles[i];
         if (r === 'm' || r === 'f' || r === 'b') room.lines[i].role = r;
       }
-      return broadcast(room, { type: 'roles', roles: m.roles.slice(0, room.lines.length) }, player.id);
+      return toDevices(room, { type: 'roles', roles: m.roles.slice(0, room.lines.length) });
+    }
+    case 'noteOffset': {
+      if (room.notes) { room.notes.fine = num(m.fine, -5, 5, 0); }
+      return;
+    }
+    case 'assign': {
+      const dev = room.devices.get(String(m.id || ''));
+      if (!dev) return;
+      if ('role' in m) dev.role = cleanRole(m.role);
+      const n = cleanName(m.name);
+      if (n) dev.name = n;
+      send(dev.ws, { type: 'assigned', role: dev.role, name: dev.name });
+      return broadcastPlayers(room);
+    }
+    case 'kick': {
+      const dev = room.devices.get(String(m.id || ''));
+      if (!dev) return;
+      send(dev.ws, { type: 'error', msg: 'Der Host hat dich aus dem Raum entfernt.', fatal: true });
+      room.devices.delete(dev.id);
+      if (dev.ws) dev.ws.ctx = null;
+      return broadcastPlayers(room);
     }
     case 'start': {
       if (!room.track || (room.phase !== 'ready' && room.phase !== 'play')) return;
       room.phase = 'play';
       room.pos = null;
-      room.finishing = false;
       resetRound(room);
-      broadcast(room, { type: 'started' });
+      toDevices(room, { type: 'started' });
       return broadcastPlayers(room);
     }
     case 'pos': {
@@ -368,31 +414,36 @@ function onMessage(ws, m) {
       const now = Date.now();
       const ts = typeof m.ts === 'number' && Math.abs(m.ts - now) < 10000 ? m.ts : now;
       room.pos = { pos: num(m.pos, 0, 7200, 0), playing: !!m.playing, ts };
-      return broadcast(room, { type: 'pos', ...room.pos }, player.id);
+      return toDevices(room, { type: 'pos', ...room.pos });
     }
     case 'offset': {
       room.offset = num(m.value, -3, 3, 0);
-      return broadcast(room, { type: 'offset', value: room.offset }, player.id);
+      return toDevices(room, { type: 'offset', value: room.offset });
+    }
+    case 'scores': {
+      if (!m.scores || typeof m.scores !== 'object') return;
+      for (const [id, v] of Object.entries(m.scores)) {
+        const dev = room.devices.get(id);
+        if (dev) dev.round = Math.round(num(v, 0, 1000000, dev.round));
+      }
+      room.dirty = true;
+      return;
     }
     case 'ended': {
-      if (room.phase !== 'play' || room.finishing) return;
-      room.finishing = true;
-      broadcast(room, { type: 'finish' });
-      setTimeout(() => {
-        room.finishing = false;
-        if (!rooms.has(room.code) || room.phase !== 'play') return;
-        for (const p of room.players.values()) p.total += p.round;
-        room.phase = 'results';
-        broadcast(room, { type: 'results', players: pub(room) });
-      }, 900);
-      return;
+      if (room.phase !== 'play') return;
+      for (const d of room.devices.values()) d.total += d.round;
+      room.phase = 'results';
+      return toAll(room, { type: 'results', players: pub(room) });
     }
     case 'lobby': {
       room.phase = 'lobby';
-      room.track = null; room.lines = null; room.pos = null; room.finishing = false;
+      room.track = null; room.lines = null; room.notes = null; room.pos = null;
       resetRound(room);
-      broadcast(room, { type: 'lobby' });
+      toDevices(room, { type: 'lobby' });
       return broadcastPlayers(room);
+    }
+    case 'leave': {
+      return closeRoom(room);
     }
   }
 }
@@ -420,13 +471,11 @@ setInterval(() => {
 setInterval(() => {
   const now = Date.now();
   for (const room of [...rooms.values()]) {
-    const host = room.players.get(room.hostId);
-    if (!host || (!host.online && now - host.lastSeen > OFFLINE_HOST_MS)) { closeRoom(room); continue; }
+    const d = room.display;
+    if (!d.online && now - d.lastSeen > OFFLINE_HOST_MS) { closeRoom(room); continue; }
     let changed = false;
-    for (const p of [...room.players.values()]) {
-      if (!p.online && p.id !== room.hostId && now - p.lastSeen > OFFLINE_PLAYER_MS) {
-        room.players.delete(p.id); changed = true;
-      }
+    for (const dev of [...room.devices.values()]) {
+      if (!dev.online && now - dev.lastSeen > OFFLINE_PLAYER_MS) { room.devices.delete(dev.id); changed = true; }
     }
     if (changed) broadcastPlayers(room);
   }
