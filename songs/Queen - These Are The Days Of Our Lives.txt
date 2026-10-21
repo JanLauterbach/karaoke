@@ -1,0 +1,364 @@
+#VERSION:1.0.0
+#TITLE:These Are The Days Of Our Lives
+#ARTIST:Queen
+#LANGUAGE:English
+#EDITION:SingStar Queen
+#GENRE:Rock
+#YEAR:1991
+#CREATOR:sgandtg
+#COVER:Queen - These Are The Days Of Our Lives [CO].jpg
+#BACKGROUND:Queen - These Are The Days Of Our Lives [BG].jpg
+#START:7.0
+#PREVIEWSTART:53.97
+#MEDLEYSTARTBEAT:0
+#MEDLEYENDBEAT:1040
+#BPM:225
+#GAP:15840
+: 0 2 0 Some
+: 4 2 0 times 
+: 8 2 0 I 
+: 12 2 0 get 
+: 16 2 0 a 
+: 20 3 0 fee
+: 24 4 -5 lin’ 
+- 34
+: 36 3 4 I 
+: 40 3 4 was 
+: 44 2 4 back 
+: 47 2 2 in 
+: 50 2 0 the 
+: 53 5 2 old 
+* 59 9 0 days 
+- 77
+: 80 3 2 Long 
+: 84 1 -3 a
+: 86 3 0 go 
+- 104
+: 132 2 4 When 
+: 135 1 4 we 
+: 137 2 4 were 
+: 140 3 4 kids 
+- 144
+: 146 2 2 When 
+: 149 2 2 we 
+: 152 2 2 were 
+: 155 5 0 young 
+- 170
+: 174 3 4 Things 
+: 179 9 7 seemed 
+: 189 2 4 so 
+: 192 3 2 per
+: 196 4 0 fect 
+- 209
+: 212 2 2 You 
+: 215 3 -3 know 
+- 233
+: 256 1 -5 The 
+: 258 4 4 days 
+: 264 2 4 were 
+: 268 2 4 end
+: 272 2 4 less 
+- 274
+: 276 1 4 We 
+: 278 2 4 were 
+: 282 4 4 cra
+: 288 3 0 zy, 
+: 292 1 0 we 
+: 294 1 0 were 
+: 296 3 0 you
+: 300 4 -5 ~ng 
+- 316
+: 320 1 -5 The 
+: 322 3 2 sun 
+: 326 2 2 was 
+: 329 2 2 al
+: 333 3 2 ways 
+: 337 3 2 shi
+: 341 2 -5 nin’ 
+- 346
+: 348 1 2 We 
+: 351 2 2 just 
+: 355 2 2 lived 
+: 359 1 0 for 
+* 361 3 4 fu
+: 365 4 2 ~n 
+- 380
+: 384 2 5 Some
+: 388 4 5 times 
+: 394 3 5 it 
+: 399 3 5 seems 
+: 405 3 5 like 
+- 408
+F 409 6 -3 Lately 
+F 423 2 -3 I 
+F 426 1 -3 just 
+F 428 2 -3 don’t 
+F 432 3 -3 know 
+- 445
+: 449 2 0 The 
+: 452 1 4 rest 
+: 454 2 2 of 
+: 457 2 0 my 
+* 460 10 4 life’s 
+: 471 1 2 bee
+: 473 4 0 ~n 
+- 487
+: 500 2 2 Just 
+: 504 2 0 a 
+: 508 3 4 sho
+: 512 3 2 ~
+: 516 2 4 ~w 
+- 533
+: 572 9 7 Those 
+: 584 9 5 were 
+: 596 3 4 the 
+: 600 10 2 days 
+: 616 10 4 of 
+: 628 6 2 our 
+: 636 3 2 li
+: 640 5 0 ~ves 
+- 660
+: 696 2 -5 The 
+* 700 10 7 bad 
+: 712 10 5 things 
+- 722
+: 724 5 4 In 
+: 730 6 2 life 
+: 744 11 4 were 
+: 756 6 2 so 
+: 764 3 2 fe
+: 768 5 0 ~w 
+- 788
+: 820 5 -5 Those 
+: 828 10 7 days 
+: 840 10 5 are 
+: 852 6 4 all 
+: 860 9 2 gone 
+: 872 10 4 now 
+: 884 5 2 but 
+- 897
+: 900 5 5 One 
+: 908 3 4 thing 
+: 912 5 2 is 
+: 920 3 2 true
+: 924 7 0 ~ 
+- 941
+: 952 1 -5 When 
+: 954 1 -5 I 
+: 956 4 4 look 
+- 970
+: 980 1 -5 And 
+: 982 2 -5 I 
+: 986 3 -5 fi
+: 990 12 2 ~nd 
+- 1009
+: 1012 2 -5 I 
+: 1016 3 -5 still 
+: 1020 3 -3 love 
+: 1024 3 0 you
+: 1028 3 2 ~
+: 1032 8 0 ~ 
+- 1052
+: 1056 2 0 You 
+: 1060 2 0 can’t 
+: 1064 2 0 turn 
+: 1068 3 0 back 
+: 1072 1 -5 the 
+: 1074 3 -5 clock 
+- 1085
+: 1088 2 4 You 
+: 1092 3 4 can’t 
+: 1096 2 4 turn 
+: 1100 2 2 back 
+: 1104 1 0 the 
+* 1106 7 0 tide 
+- 1123
+F 1135 2 -5 Ain’t 
+F 1138 1 -5 that 
+F 1140 1 -5 a 
+F 1142 3 -5 shame 
+- 1160
+: 1176 5 3 Ooh 
+- 1182
+: 1184 2 3 I’d 
+: 1188 2 4 like 
+: 1192 1 4 to 
+: 1194 3 4 go 
+: 1198 5 4 back 
+: 1204 2 4 one 
+: 1208 3 4 time 
+- 1217
+: 1220 1 4 On 
+: 1222 1 4 a 
+: 1224 2 4 rol
+: 1227 2 4 ler
+: 1230 5 7 coas
+: 1236 1 4 ter 
+: 1238 6 0 ride 
+- 1254
+: 1264 1 -7 When 
+: 1266 2 3 life’s 
+: 1270 3 2 just 
+: 1274 1 0 a 
+: 1276 1 0 ga
+: 1278 3 -5 ~
+: 1282 4 -3 ~me 
+- 1296
+: 1312 2 4 No 
+: 1316 2 4 use 
+: 1320 2 4 in 
+: 1324 1 4 sit
+: 1326 5 4 ting 
+- 1331
+: 1332 2 4 And 
+: 1336 1 4 in 
+: 1338 3 -5 thin
+: 1342 1 -5 kin’ 
+: 1344 1 -5 on 
+: 1348 2 -5 what 
+: 1352 1 -8 you 
+: 1354 9 -5 did 
+- 1372
+: 1376 3 2 When 
+: 1380 1 2 you 
+: 1382 2 2 can 
+: 1386 2 2 lay 
+* 1390 7 2 back 
+- 1397
+: 1398 1 2 And 
+: 1400 2 -1 en
+: 1404 3 4 joy 
+: 1408 3 2 it 
+: 1412 3 2 through 
+: 1416 1 0 your 
+: 1418 5 2 kids 
+- 1433
+: 1444 3 5 Some
+: 1448 3 5 times 
+: 1452 3 5 it 
+: 1457 2 5 seems 
+: 1462 4 5 like 
+: 1468 2 5 late
+: 1471 2 0 ly 
+- 1478
+: 1480 3 5 I 
+: 1484 2 2 just 
+: 1487 3 5 don’t 
+: 1491 2 0 know 
+- 1503
+: 1516 1 4 Bet
+: 1518 2 2 ter 
+: 1522 2 4 sit 
+: 1526 5 4 back 
+- 1531
+: 1532 2 0 And 
+: 1536 1 2 go
+: 1538 4 4 ~ 
+- 1552
+: 1559 2 2 With 
+: 1562 2 0 the 
+* 1565 4 4 flo
+: 1570 6 2 ~w 
+- 1591
+: 1624 2 -5 ’Cause 
+: 1628 9 7 these 
+: 1640 10 5 are 
+: 1652 3 4 the 
+: 1656 8 2 days 
+: 1672 11 4 of 
+: 1684 5 2 our 
+: 1692 3 2 li
+: 1696 6 0 ~ves 
+- 1717
+: 1748 5 -5 They’ve 
+: 1756 11 7 flown 
+- 1767
+: 1768 9 5 In 
+: 1780 4 4 the 
+* 1788 9 2 swift
+: 1800 10 4 ness 
+: 1812 6 2 of 
+: 1820 3 2 ti
+: 1824 4 0 ~me 
+- 1843
+: 1876 6 -5 These 
+: 1884 9 7 days 
+: 1896 10 5 are 
+: 1908 6 4 all 
+: 1916 10 2 gone 
+: 1928 9 4 now 
+: 1940 4 2 but 
+- 1953
+: 1956 7 5 Some 
+: 1964 7 4 things 
+: 1972 3 2 re
+: 1976 3 2 mai
+: 1980 8 0 ~n 
+- 1998
+: 2008 1 -5 When 
+: 2010 1 -5 I 
+: 2012 3 4 look 
+- 2025
+: 2036 1 -5 And 
+: 2038 2 -5 I 
+: 2042 10 2 find 
+- 2064
+: 2068 6 -5 No 
+: 2076 3 -3 cha
+: 2080 8 0 ~nge 
+- 2118
+* 2748 11 7 Those 
+: 2760 10 5 were 
+: 2773 3 4 the 
+: 2777 10 2 days 
+: 2792 11 4 of 
+: 2804 6 2 our 
+: 2812 3 2 li
+: 2816 8 0 ~ves 
+- 2834
+: 2848 4 2 Yeah 
+- 2862
+: 2872 3 -5 The 
+: 2876 9 7 bad 
+: 2888 9 5 things 
+- 2898
+: 2900 3 4 In 
+: 2904 6 2 life 
+: 2920 11 4 were 
+: 2932 6 2 so 
+: 2940 3 2 fe
+: 2944 6 0 ~w 
+- 2965
+: 2996 6 -5 Those 
+: 3004 11 7 days 
+: 3016 9 5 are 
+: 3028 7 4 all 
+: 3036 8 2 gone 
+: 3048 8 4 now 
+: 3060 5 2 but 
+- 3073
+* 3076 6 5 One 
+: 3084 6 4 thing’s 
+: 3092 4 2 still 
+: 3100 3 2 true
+: 3104 5 0 ~ 
+- 3119
+: 3128 1 -5 When 
+: 3130 1 -5 I 
+: 3132 2 4 look 
+- 3144
+: 3156 1 -5 And 
+: 3158 2 -5 I 
+: 3162 3 -5 fi
+: 3166 7 2 ~nd 
+- 3183
+: 3196 5 5 I 
+: 3202 3 4 still 
+: 3206 3 2 love 
+: 3210 13 0 you 
+- 3253
+F 3332 2 0 I 
+F 3336 1 0 still 
+F 3338 1 0 love 
+F 3340 1 0 you 
+E

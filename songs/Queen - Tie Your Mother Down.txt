@@ -1,0 +1,438 @@
+#VERSION:1.0.0
+#TITLE:Tie Your Mother Down
+#ARTIST:Queen
+#LANGUAGE:English
+#EDITION:SingStar Queen
+#YEAR:1976
+#CREATOR:sgandtg
+#COVER:Queen - Tie Your Mother Down [CO].jpg
+#BACKGROUND:Queen - Tie Your Mother Down [BG].jpg
+#START:5.5
+#END:226000
+#BPM:270
+#GAP:14960
+: 0 21 7 Oo
+: 22 31 9 ~
+: 54 5 11 ~h 
+- 59
+F 60 5 7 Yeh 
+- 65
+* 66 19 9 Ooh 
+: 86 6 9 yeh 
+- 128
+: 207 3 7 Get 
+: 211 2 4 your 
+* 214 7 7 par
+: 222 4 7 ty 
+: 228 7 9 gown 
+- 235
+: 236 1 9 And 
+: 238 3 7 get 
+: 242 3 4 your 
+: 246 5 7 pig
+: 252 7 7 tail 
+: 260 7 9 down 
+- 267
+: 268 1 7 And 
+: 270 4 9 get 
+: 275 2 4 your 
+: 278 5 9 heart 
+- 284
+: 286 3 9 Bea
+: 290 2 9 tin’ 
+: 294 5 9 ba
+: 300 12 9 by 
+- 322
+: 334 3 7 Got 
+: 338 2 4 my 
+: 341 5 7 ti
+* 348 5 7 min’ 
+: 354 6 9 right 
+- 360
+: 362 2 4 I 
+: 365 3 7 got 
+: 369 4 4 my 
+: 374 3 7 act 
+: 378 5 7 all 
+* 384 7 9 tight 
+- 391
+F 392 1 7 And 
+F 394 4 7 it’s 
+F 400 4 7 gotta 
+F 405 2 7 be 
+F 408 7 7 tonight 
+- 416
+F 418 3 7 My 
+F 422 5 7 little 
+F 428 9 7 school 
+F 438 8 7 babe 
+- 456
+: 466 1 4 Your 
+: 468 3 4 mom
+: 472 2 4 ma 
+: 476 3 4 says 
+: 480 2 4 you 
+: 484 3 4 gon
+: 488 2 4 na 
+- 490
+: 492 1 4 And 
+: 494 3 -1 your 
+: 498 4 4 dad
+: 503 2 4 dy 
+: 506 5 4 says 
+: 512 1 4 you 
+* 514 3 -1 won’t 
+- 517
+F 518 1 -1 And 
+F 520 2 -1 I’m 
+F 526 7 4 burnin’ 
+F 534 1 4 up 
+F 536 15 4 inside 
+- 551
+F 552 2 4 Ain’t 
+F 555 3 4 no 
+F 559 6 4 way 
+F 566 3 4 I’m 
+- 569
+F 570 3 4 Gonna 
+F 574 5 4 lose 
+F 580 3 4 out 
+F 584 5 4 this 
+F 590 8 4 time 
+- 608
+F 616 1 4 Oh 
+F 618 5 4 no 
+- 659
+: 710 5 4 Ooh 
+- 715
+: 716 6 7 Tie 
+: 724 3 7 your 
+: 728 3 7 mo
+: 732 3 7 ther 
+: 736 7 6 down 
+- 746
+: 748 6 7 Tie 
+: 756 1 7 your 
+: 758 3 7 mo
+: 762 3 7 ther 
+: 766 6 6 down 
+- 772
+F 774 4 6 Lock 
+F 780 4 6 your 
+F 786 6 6 daddy 
+F 793 1 6 out 
+F 795 2 6 of 
+F 798 5 6 doors 
+- 803
+F 804 2 6 I 
+F 808 3 6 don’t 
+F 812 2 6 need 
+F 815 3 6 him 
+F 820 4 6 nosin’ 
+F 825 12 6 around 
+- 842
+: 844 6 7 Tie 
+: 852 2 7 your 
+: 855 3 7 mo
+: 859 2 7 ther 
+: 862 6 6 down 
+- 872
+: 874 8 7 Tie 
+: 884 1 7 your 
+: 886 4 7 mo
+: 892 1 7 ther 
+: 894 6 6 down 
+- 900
+: 902 3 2 Give 
+: 906 3 2 me 
+: 910 15 7 all 
+: 926 15 6 your 
+: 942 15 7 love 
+- 957
+: 958 14 9 To
+: 973 4 4 ni
+: 978 2 2 ~
+: 981 2 0 ~
+: 984 15 -3 ~ght 
+- 1035
+: 1090 3 7 You’re 
+: 1094 3 7 such 
+: 1098 3 4 a 
+: 1102 7 7 dir
+* 1110 3 7 ty 
+: 1114 9 9 louse 
+- 1123
+: 1124 5 7 Go 
+: 1130 3 4 get 
+: 1134 3 7 out
+: 1138 1 7 ta 
+: 1140 4 7 my 
+: 1146 7 9 house 
+- 1159
+F 1162 2 9 That’s 
+F 1165 4 9 all 
+F 1170 1 9 I 
+F 1172 5 9 ever 
+F 1178 4 9 get 
+- 1182
+F 1184 5 9 From 
+F 1190 12 9 your 
+- 1209
+: 1212 15 2 Ooh 
+: 1228 5 1 fa
+: 1234 2 2 mi
+: 1237 4 3 ly 
+: 1242 11 4 ties 
+- 1254
+F 1256 1 7 In 
+F 1258 3 7 fact 
+F 1263 3 7 I 
+F 1267 2 7 don’t 
+F 1270 1 7 think 
+- 1271
+F 1272 2 7 I 
+F 1275 4 7 ever 
+F 1280 7 7 heard 
+- 1287
+F 1288 2 7 A 
+F 1291 6 7 single 
+F 1298 5 7 little 
+F 1304 4 7 civil 
+F 1309 5 7 word 
+- 1314
+F 1316 1 7 From 
+F 1318 7 7 those 
+F 1326 11 7 guys 
+- 1343
+: 1346 1 4 But 
+: 1348 1 4 you 
+: 1350 2 4 know 
+- 1352
+: 1354 3 8 I 
+: 1358 2 8 don’t 
+: 1362 1 8 give 
+* 1364 1 4 a 
+: 1366 7 8 light 
+- 1373
+F 1374 1 4 I’m 
+F 1376 6 4 gonna 
+- 1382
+: 1384 4 8 Make 
+: 1390 5 8 out 
+: 1396 3 8 all 
+: 1400 5 4 right 
+- 1405
+F 1406 1 4 I’ve 
+F 1408 1 4 got 
+F 1410 1 4 a 
+F 1412 13 4 sweetheart 
+F 1426 8 4 hand 
+- 1434
+F 1436 1 4 To 
+F 1438 1 4 put 
+F 1440 1 4 a 
+F 1442 6 4 stop 
+F 1450 4 4 to 
+F 1455 2 4 all 
+F 1458 6 4 that 
+- 1473
+F 1476 16 4 Snipin’ 
+F 1494 3 4 and 
+F 1498 12 4 grousin’ 
+- 1512
+F 1514 3 4 All 
+F 1518 4 4 right 
+- 1532
+: 1539 6 7 Tie 
+: 1546 2 7 your 
+: 1550 4 7 mo
+: 1555 2 7 ther 
+: 1558 6 6 down 
+- 1568
+: 1570 9 7 Tie 
+: 1580 1 7 your 
+: 1582 3 7 mo
+: 1586 3 7 ther 
+: 1590 8 6 down 
+- 1598
+: 1600 4 4 Take 
+: 1605 4 4 your 
+: 1610 3 4 lit
+: 1614 2 4 tle 
+: 1618 3 4 bro
+: 1622 2 -3 ther 
+- 1624
+: 1626 3 -3 Swim
+: 1630 1 -3 min’ 
+: 1632 1 -3 with 
+: 1634 2 -3 a 
+: 1637 5 -3 brick 
+- 1642
+F 1644 5 -3 That’s 
+F 1650 3 -3 all 
+F 1654 7 -3 right 
+- 1663
+: 1665 7 7 Tie 
+: 1674 1 7 your 
+: 1676 3 7 mo
+: 1680 3 7 ther 
+: 1684 5 6 down 
+- 1695
+: 1698 6 7 Tie 
+: 1706 1 7 your 
+: 1708 2 7 mo
+: 1711 2 7 ther 
+: 1714 6 6 down 
+- 1720
+: 1722 3 2 Or 
+: 1726 5 4 you 
+: 1732 13 7 ain’t 
+: 1746 16 6 no 
+: 1763 16 7 friend 
+: 1780 15 9 of 
+- 1795
+* 1796 5 9 Mi
+: 1802 44 9 ~
+: 1847 8 -3 ~ne 
+- 1865
+: 1874 13 6 Ooh
+: 1888 4 7 ~ 
+: 1893 1 7 ain’t 
+: 1895 1 7 no 
+: 1897 8 7 friend 
+: 1906 1 7 of 
+: 1908 5 7 mine 
+- 1924
+: 1928 4 2 Oh 
+: 1934 5 1 no 
+- 1942
+: 1944 2 2 No 
+: 1948 4 1 no 
+- 1970
+F 1990 8 0 Ow 
+- 2034
+: 2534 9 9 Ooh 
+- 2543
+: 2544 3 9 Your 
+: 2548 3 8 mom
+: 2552 3 8 my 
+: 2556 2 8 and 
+: 2559 2 4 your 
+: 2562 6 4 dad
+: 2569 2 4 dy 
+- 2571
+: 2572 3 4 Gon
+: 2576 5 2 na 
+: 2582 3 4 plague 
+: 2586 2 4 me 
+: 2589 1 4 till 
+: 2591 2 2 I 
+: 2594 11 6 die 
+- 2605
+: 2606 4 4 They 
+: 2611 5 4 can’t 
+: 2617 2 4 un
+: 2620 1 4 der
+: 2622 7 8 stand 
+: 2630 2 4 it 
+- 2634
+F 2636 1 4 I’m 
+F 2638 3 4 just 
+F 2642 3 4 a 
+F 2646 6 4 peace 
+F 2653 4 4 lovin’ 
+F 2658 8 4 guy 
+- 2684
+: 2713 29 9 Ooh 
+- 2760
+: 2780 17 4 Oh 
+: 2798 8 7 tie 
+: 2807 2 7 your 
+: 2810 5 7 mo
+: 2816 1 7 ther 
+: 2818 9 6 down 
+- 2830
+: 2832 5 7 Tie 
+: 2838 3 7 your 
+: 2842 3 7 mo
+* 2846 1 7 ther 
+: 2848 7 6 down 
+- 2856
+: 2858 4 6 Get 
+: 2863 3 4 that 
+: 2868 2 4 big, 
+: 2872 2 4 big, 
+: 2876 3 4 big, 
+- 2879
+: 2880 5 4 Big, 
+: 2886 5 4 big, 
+: 2892 5 4 big 
+- 2897
+F 2898 5 4 Daddy 
+F 2904 7 4 outta 
+F 2912 13 4 doors 
+- 2925
+: 2926 5 9 Tie 
+: 2934 1 9 your 
+: 2936 3 9 mo
+* 2940 2 9 ther 
+: 2944 3 9 down 
+- 2947
+: 2948 2 2 Yeah
+: 2951 3 4 ~ 
+- 2954
+: 2956 7 9 Tie 
+: 2964 2 9 your 
+: 2968 4 9 mo
+: 2973 2 9 ther 
+: 2976 5 9 down 
+- 2982
+: 2984 1 2 Give 
+: 2986 3 2 me 
+: 2990 16 7 all 
+: 3007 16 6 your 
+: 3024 15 7 love 
+: 3040 14 9 to
+: 3056 6 9 ni
+: 3063 21 9 ~ght 
+- 3102
+: 3152 6 7 All 
+: 3160 6 6 your 
+: 3168 5 4 love 
+: 3174 5 2 to
+: 3180 3 2 ni
+: 3184 5 -3 ~ght 
+- 3207
+F 3228 1 4 Give 
+F 3230 2 4 me 
+F 3234 5 4 every 
+F 3240 6 4 inch 
+F 3248 1 4 of 
+F 3250 3 4 your 
+F 3254 6 4 love 
+- 3296
+: 3418 1 4 A
+: 3420 11 9 ~ll 
+: 3432 5 7 your 
+: 3438 5 4 love 
+: 3444 1 -3 to
+: 3446 15 -3 night 
+- 3470
+F 3474 8 -3 Yeah 
+- 3484
+F 3486 5 -3 Gotta 
+F 3492 3 -3 get 
+F 3496 1 -3 my 
+F 3498 7 -3 timing 
+F 3506 7 -3 right 
+- 3518
+F 3520 7 -3 Yeah 
+- 3535
+: 3538 7 9 Ooh 
+: 3546 5 9 all 
+: 3552 2 9 your 
+: 3556 6 9 love 
+- 3598
+: 3682 1 4 To
+: 3684 66 9 night 
+E

@@ -1,0 +1,205 @@
+#VERSION:1.0.0
+#TITLE:In Only Seven Days
+#ARTIST:Queen
+#LANGUAGE:English
+#EDITION:[SC]-Songs
+#YEAR:1978
+#CREATOR:Canni
+#COVER:Queen - In Only Seven Days [CO].jpg
+#BACKGROUND:Queen - In Only Seven Days [BG].jpg
+#START:6.8
+#END:155000
+#BPM:227
+#GAP:11220
+: 0 13 1 Mon
+: 14 11 2 day, 
+: 35 13 1 start 
+: 49 9 2 of 
+: 59 6 4 my 
+: 68 9 1 ho
+: 78 2 2 li
+: 81 8 2 day 
+- 98
+: 102 13 6 Free
+: 116 9 4 dom 
+: 126 7 2 for 
+: 134 9 1 just 
+: 144 4 -1 one 
+: 149 8 -1 week 
+- 166
+: 169 11 6 Feels 
+: 181 10 7 good 
+: 192 6 9 to 
+: 200 9 6 get 
+: 210 3 4 a
+: 214 7 4 wa
+: 222 2 2 ~
+: 225 2 -1 ~y 
+- 232
+: 234 7 6 Ooh 
+: 242 4 4 oh 
+: 247 7 6 ooh 
+: 255 3 4 oh 
+: 259 4 1 oh 
+- 265
+: 267 11 1 Tues
+: 279 12 2 day, 
+: 299 11 1 saw 
+: 311 11 2 her 
+: 324 7 4 down 
+: 332 8 1 on 
+: 341 3 2 the 
+: 345 12 2 beach 
+- 362
+: 364 10 6 I 
+: 376 12 4 stood 
+: 389 7 2 and 
+: 397 6 1 watched 
+: 404 3 -1 a 
+: 408 10 -1 while 
+- 423
+: 425 1 6 And 
+: 427 11 6 she 
+: 440 12 7 looked 
+: 453 5 9 and 
+: 459 8 6 smiled 
+: 468 3 4 at 
+: 472 10 4 me 
+- 497
+: 526 7 9 Wednes
+: 534 9 6 day, 
+: 551 2 4 I 
+: 554 3 3 di
+: 558 5 3 dn’t 
+: 566 7 4 see 
+: 574 9 6 her 
+- 591
+: 594 3 7 I 
+: 598 6 4 hoped 
+: 614 2 2 that 
+: 617 8 1 she’d 
+: 626 3 1 be 
+: 630 8 2 back 
+: 646 2 4 to
+: 649 7 4 mor
+: 657 16 2 row 
+- 703
+: 734 3 -3 And 
+: 738 3 -1 then 
+: 742 2 -3 on 
+: 745 12 6 Thurs
+: 758 7 4 day 
+- 771
+: 774 2 -3 My 
+: 777 8 4 luck 
+: 786 2 6 had 
+: 789 6 2 changed 
+- 795
+: 797 2 -3 She 
+: 800 4 -1 stood 
+: 805 4 -3 there 
+: 810 6 6 all 
+: 818 2 7 a
+: 821 5 4 lone 
+- 828
+: 830 2 -3 I 
+: 834 3 -1 went 
+: 838 3 -3 and 
+: 842 7 4 asked 
+: 850 2 6 her 
+: 853 5 2 name 
+- 858
+: 860 4 7 I 
+: 865 2 7 ne
+: 868 3 7 ver 
+: 872 4 7 thought 
+: 877 3 7 that 
+: 881 2 7 this 
+: 884 3 9 could 
+: 888 3 6 hap
+: 892 3 2 pen 
+: 896 3 -1 to 
+: 900 7 4 me 
+- 913
+: 916 3 -3 In 
+: 920 3 1 on
+: 924 4 2 ly 
+: 932 6 4 se
+: 939 7 6 ven 
+: 948 5 2 day
+: 954 1 -1 ~
+: 956 1 -3 ~s 
+- 962
+: 964 6 7 It 
+: 972 3 7 would 
+: 976 3 7 take 
+: 980 3 9 a 
+: 984 3 6 hun
+: 988 3 2 dred 
+: 992 3 -1 or 
+: 996 12 11 more 
+- 1009
+: 1011 2 -3 For 
+: 1014 3 1 me
+: 1018 4 2 mo
+: 1026 7 4 ries 
+: 1034 7 6 to 
+: 1042 7 2 fa
+: 1050 1 -1 ~
+: 1052 3 -3 ~de 
+- 1085
+: 1318 4 4 I 
+: 1323 6 1 wish 
+: 1330 11 1 Fri
+: 1342 14 2 day 
+: 1362 11 1 would 
+: 1374 11 2 last 
+: 1386 7 4 for
+: 1394 11 1 e
+: 1406 12 2 ver 
+- 1424
+: 1426 10 6 I 
+: 1437 11 4 held 
+: 1449 7 2 her 
+: 1457 7 1 close 
+: 1465 3 -1 to 
+: 1469 9 -1 me 
+- 1482
+: 1484 2 -1 I 
+: 1487 4 6 coul
+: 1492 4 6 dn’t 
+: 1499 6 7 bear 
+: 1507 11 9 to 
+: 1519 6 6 leave 
+: 1526 4 4 her 
+: 1531 9 4 there 
+- 1555
+: 1580 3 9 Sa
+: 1584 2 9 tur
+: 1587 8 6 day, 
+: 1607 3 4 just 
+: 1611 4 3 twen
+: 1616 3 3 ty 
+: 1620 2 3 four 
+: 1623 6 4 hou
+: 1630 10 6 ~rs 
+- 1647
+: 1650 3 7 Oh 
+: 1654 7 4 no, 
+: 1670 3 2 I’m 
+: 1674 3 1 go
+: 1678 3 1 ing 
+: 1682 7 1 back 
+: 1690 7 2 home 
+: 1698 5 4 on 
+: 1704 5 4 Su
+: 1710 6 2 ~n
+: 1717 10 2 day 
+- 1757
+: 2013 11 14 Ooh 
+: 2029 10 6 so 
+: 2043 7 -1 sa
+: 2051 10 2 ~d 
+: 2080 4 2 a
+: 2085 21 2 lone 
+E
