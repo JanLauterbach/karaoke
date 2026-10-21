@@ -254,7 +254,7 @@ async function refreshLib() {
   $('libInfo').innerHTML = S.libIndex.length
     ? `<span class="chip ok">${S.libIndex.length} Songs mit Noten</span> <button class="ghost mini" id="btnLibClear">leeren</button>`
     : 'Noch keine Notendateien geladen.';
-  const b = $('btnLibClear'); if (b) b.onclick = async () => { if (confirm('Bibliothek wirklich leeren?')) { await Lib.clear(); refreshLib(); } };
+  const b = $('btnLibClear'); if (b) b.onclick = async () => { if (confirm('Bibliothek wirklich leeren?')) { await Lib.clear(); KA.store.set('repoHash', ''); refreshLib(); } };
 }
 async function readText(file) {
   const buf = await (file.arrayBuffer ? file.arrayBuffer() : new Response(file).arrayBuffer());
@@ -280,6 +280,18 @@ async function importFiles(files) {
   for (const f of list) { try { items.push({ name: f.name, text: await readText(f) }); } catch {} }
   const r = await importTexts(items);
   toast(`${r.ok} Songs hinzugefügt` + (r.skip ? `, ${r.skip} Dateien übersprungen (kein Notenformat)` : ''), 5000);
+}
+/** Songs aus dem Repository-Ordner songs/ automatisch laden (nur wenn sich etwas geändert hat) */
+async function syncRepoSongs() {
+  try {
+    const v = await (await fetch('/api/songs/version')).json();
+    if (!v || !v.n) return;
+    if (KA.store.get('repoHash', '') === v.hash && S.libIndex.length >= v.n) return;
+    const r = await (await fetch('/api/songs')).json();
+    const res = await importTexts(r.items || []);
+    KA.store.set('repoHash', r.hash);
+    toast(`${res.ok} Songs aus dem Repository geladen`, 4000);
+  } catch {}
 }
 async function filesFromDrop(dt) {
   const out = [];
@@ -922,7 +934,7 @@ async function boot() {
     sessKey: 'ka_display', storage: sessionStorage,
     onMessage: handle, onState: ok => $('conn').classList.toggle('hidden', ok || !S.code)
   });
-  await Lib.open(); await refreshLib();
+  await Lib.open(); await refreshLib(); await syncRepoSongs();
   await SP.init();
   $('redir').textContent = SP.redirect;
 

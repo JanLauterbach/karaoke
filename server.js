@@ -17,6 +17,38 @@ const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || '';
 const PUBLIC_DIR = path.join(__dirname, 'public');
 const QR_FILE = path.join(__dirname, 'node_modules', 'qrcode-generator', 'qrcode.js');
 
+/* ------------------------------------------------------------------ */
+/* Noten-Bibliothek aus dem Repository (Ordner songs/)                 */
+/* ------------------------------------------------------------------ */
+const SONGS_DIR = process.env.SONGS_DIR || path.join(__dirname, 'songs');
+let songsData = { hash: '0', items: [] };
+function decodeText(buf) {
+  try { return new TextDecoder('utf-8', { fatal: true }).decode(buf); } catch { return new TextDecoder('windows-1252').decode(buf); }
+}
+function loadSongs() {
+  const items = [];
+  const walk = (dir, depth) => {
+    let ents; try { ents = fs.readdirSync(dir, { withFileTypes: true }); } catch { return; }
+    for (const e of ents) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) { if (depth < 4 && !e.name.startsWith('.')) walk(p, depth + 1); continue; }
+      if (!e.isFile() || !/\.txt$/i.test(e.name) || /^readme/i.test(e.name)) continue;
+      try {
+        const st = fs.statSync(p); if (st.size > 2e6) continue;
+        const text = decodeText(fs.readFileSync(p));
+        if (/^#TITLE:/mi.test(text) && /^#BPM:/mi.test(text)) items.push({ name: path.relative(SONGS_DIR, p), text });
+      } catch {}
+    }
+  };
+  walk(SONGS_DIR, 0);
+  items.sort((a, b) => a.name.localeCompare(b.name));
+  const h = crypto.createHash('sha1');
+  for (const it of items) { h.update(it.name); h.update('\0'); h.update(it.text); h.update('\0'); }
+  songsData = { hash: h.digest('hex').slice(0, 16), items };
+  console.log('Noten aus dem Repository: ' + items.length + ' Songs');
+}
+loadSongs();
+
 const MAX_ROOMS = 200;
 const MAX_PLAYERS = 12;
 const OFFLINE_PLAYER_MS = 10 * 60 * 1000;
@@ -141,6 +173,9 @@ const server = http.createServer(async (req, res) => {
     const lines = await fetchLyrics(track, artist, album, duration);
     return sendJSON(res, { lines });
   }
+
+  if (url.pathname === '/api/songs/version') return sendJSON(res, { hash: songsData.hash, n: songsData.items.length });
+  if (url.pathname === '/api/songs') return sendJSON(res, { hash: songsData.hash, items: songsData.items });
 
   if (url.pathname === '/vendor/qrcode.js') return sendFile(res, QR_FILE);
 

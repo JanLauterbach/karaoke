@@ -39,6 +39,12 @@ Während des Songs: Pause (Leertaste), Von vorn, Text-Versatz und Noten-Versatz 
 - Für einen einzelnen Song kannst du im Bereit-Fenster auch eine Datei direkt wählen. Stimmt das Timing nicht ganz, hilft der Noten-Feinabgleich.
 - Ohne Noten zählt „Singen" (Mikro über der Schwelle) in den Zeilen, die dir zugeteilt sind. Mit Noten zählt, wenn du den Ton triffst (±1,5 Halbtöne, Oktave egal), goldene Noten doppelt. **Das ist die vorläufige Wertung**, das Modell passen wir später an.
 
+## Songs fest im Repository speichern (empfohlen)
+
+Lege die `.txt`-Notendateien (auch ganze Ordner vom USDB Syncer, nur die `.txt` sind nötig) in den Ordner `songs/` im GitHub-Repository. Der Server liefert sie aus, der Mac lädt sie beim Öffnen automatisch in die Bibliothek. Nichts mehr importieren, auch nicht auf einem anderen Mac oder Browser. Neue Songs: hochladen, Render baut neu, Seite neu laden.
+
+**Repository auf privat stellen** (GitHub: Settings, ganz unten Danger Zone, Change visibility), denn die Noten sind urheberrechtlich geschützt. Render funktioniert mit privaten Repositories weiter.
+
 ## Tipps und Grenzen
 
 - Handy nah an den Mund halten und einmal **Kalibrieren** (2,5 s nicht singen, Musik läuft). Die Box im Hintergrund stört sonst. Mit Kopfhörern klappt es am besten.
@@ -50,6 +56,7 @@ Während des Songs: Pause (Leertaste), Von vorn, Text-Versatz und Noten-Versatz 
 ## Dateien
 
 - `server.js` Server: Räume, Sync, Weiterleitung der Tonhöhen, Text-Suche (LRCLIB)
+- `songs/` deine Notendateien (.txt)
 - `public/display.html` Mac-Bildschirm
 - `public/phone.html` Handy-Mikro
 - `public/index.html` Startseite (leitet auch den Spotify-Login weiter)
